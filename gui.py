@@ -1,5 +1,5 @@
 from tkinter import *
-
+from tkinter import messagebox
 class Gui(Tk):
     
     def __init__(self):
@@ -41,3 +41,14 @@ class Gui(Tk):
         self.buy_button = Button()
         self.buy_button.configure(text = "Buy")
         self.buy_button.grid(row = 3, column = 0)
+
+        #event
+        self.buy_button.bind("<ButtonRelease-1>", self.__buy_button_clicked)
+
+    def __buy_button_clicked(self, event):
+        tickets = int(self.tickets_entry.get())
+
+        if tickets >= 1: 
+            messagebox.showinfo("Purchased!", "You have purchased " + str(tickets) + " ticket(s)!")
+        else:
+            messagebox.showinfo("You have entered an invalid number!", "Please enter a value of 1 or more.")
